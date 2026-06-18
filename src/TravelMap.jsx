@@ -60,6 +60,49 @@ function PinGlyph() {
   );
 }
 
+const MAP_TREES = [[14, 22], [62, 18], [82, 55], [20, 40], [68, 78], [44, 82]];
+const MAP_BUILDINGS = [[44, 28], [76, 40], [26, 78]];
+const MAP_LANTERNS = [[50, 30], [78, 42], [16, 66]];
+
+function DefaultMapArt() {
+  return (
+    <svg className="map-art" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="mapGround" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#1b2c46" />
+          <stop offset="100%" stopColor="#0a1422" />
+        </linearGradient>
+        <radialGradient id="mapPond" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="rgba(120,170,255,0.32)" />
+          <stop offset="100%" stopColor="rgba(120,170,255,0)" />
+        </radialGradient>
+      </defs>
+
+      <rect x="0" y="0" width="100" height="100" fill="url(#mapGround)" />
+
+      <path d="M10,70 C25,55 35,60 50,45 C62,35 70,40 88,25" fill="none" stroke="rgba(216,177,95,0.25)" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M20,85 C30,75 40,80 55,68" fill="none" stroke="rgba(216,177,95,0.18)" strokeWidth="1.1" strokeLinecap="round" />
+
+      <ellipse cx="30" cy="62" rx="14" ry="8" fill="url(#mapPond)" />
+
+      {MAP_TREES.map(([cx, cy], i) => (
+        <circle key={`tree-${i}`} cx={cx} cy={cy} r="3.2" fill="rgba(70,110,80,0.55)" />
+      ))}
+
+      {MAP_BUILDINGS.map(([cx, cy], i) => (
+        <g key={`bldg-${i}`} transform={`translate(${cx - 6} ${cy - 4})`}>
+          <path d="M0,4 6,0 12,4 Z" fill="rgba(216,177,95,0.45)" />
+          <rect x="2" y="4" width="8" height="4" fill="rgba(8,15,26,0.7)" />
+        </g>
+      ))}
+
+      {MAP_LANTERNS.map(([cx, cy], i) => (
+        <circle key={`lantern-${i}`} cx={cx} cy={cy} r="1.4" fill="#f6dfa0" opacity="0.8" />
+      ))}
+    </svg>
+  );
+}
+
 const TABS = [
   { key: 'home', label: '홈', Icon: HomeIcon },
   { key: 'travel', label: '여행', Icon: CompassIcon },
@@ -107,7 +150,7 @@ export default function TravelMap({
         {mapImageUrl ? (
           <div className="map-image" style={{ backgroundImage: `url(${mapImageUrl})` }} />
         ) : (
-          <div className="map-image map-image-empty">지도 배경 이미지 자리</div>
+          <DefaultMapArt />
         )}
 
         <svg className="map-path" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -225,17 +268,7 @@ export default function TravelMap({
 
         .map-image { position: absolute; inset: 0; background-size: cover; background-position: center; }
 
-        .map-image-empty {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(255, 255, 255, 0.03);
-          font-family: 'Noto Sans KR', system-ui, sans-serif;
-          font-size: 12px;
-          color: rgba(255, 255, 255, 0.35);
-          text-align: center;
-          padding: 12px;
-        }
+        .map-art { position: absolute; inset: 0; width: 100%; height: 100%; }
 
         .map-path { position: absolute; inset: 0; width: 100%; height: 100%; }
 

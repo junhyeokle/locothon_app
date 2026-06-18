@@ -60,10 +60,8 @@ export default function PassportSplash({ backgroundImageUrl, onStart }) {
       <div className="stars" />
 
       <div className="scene">
-        {backgroundImageUrl ? (
+        {backgroundImageUrl && (
           <div className="scene-image" style={{ backgroundImage: `url(${backgroundImageUrl})` }} />
-        ) : (
-          <div className="scene-placeholder">배경 사진 자리 (야경 사진을 여기에)</div>
         )}
         <div className="scene-fade" />
       </div>
@@ -143,21 +141,6 @@ export default function PassportSplash({ backgroundImageUrl, onStart }) {
           inset: 0;
           background-size: cover;
           background-position: center;
-        }
-
-        .scene-placeholder {
-          position: absolute;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px dashed rgba(220, 181, 103, 0.35);
-          margin: 8px;
-          font-family: system-ui, sans-serif;
-          font-size: 13px;
-          color: rgba(232, 207, 149, 0.45);
-          text-align: center;
-          padding: 12px;
         }
 
         .scene-fade {

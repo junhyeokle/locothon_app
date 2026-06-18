@@ -11,6 +11,7 @@ import StoryComplete from './StoryComplete';
 import GiftToast from './GiftToast';
 import MyInfo from './MyInfo';
 import MyHanbok from './MyHanbok';
+import hanbokPhoto from './assets/hanbok.jpg';
 
 /**
  * 등화행궁 패스포트 — 전체 화면 흐름
@@ -109,7 +110,7 @@ export default function App() {
         <MyInfo onNavigate={handleMyInfoNavigate} onTabChange={handleTabChange} />
       )}
 
-      {page === 'myHanbok' && <MyHanbok onBack={() => setPage('myInfo')} />}
+      {page === 'myHanbok' && <MyHanbok imageUrl={hanbokPhoto} onBack={() => setPage('myInfo')} />}
 
       {showGiftToast && <GiftToast />}
     </>

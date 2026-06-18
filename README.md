@@ -6,4 +6,3 @@ npm run dev
 
 ## 빌드
 npm run build
-# locothon_app

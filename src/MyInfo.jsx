@@ -253,7 +253,6 @@ export default function MyInfo({
           margin-left: 16px;
           margin-right: 16px;
           margin-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-          margin-top: 32px;
           display: flex;
           justify-content: space-around;
           align-items: center;
